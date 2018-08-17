@@ -37,9 +37,9 @@ class WebViewScaffold extends StatefulWidget {
     this.enableZoom = true,
     this.enableLocalStorage = true,
     this.enableScroll = true,
-    this.swipeToRefresh = true,
+    this.swipeToRefresh = false,
     this.headers,
-    this.refreshOnResume = true,
+    this.refreshOnResume = false,
     this.exitAppOnClose = false,
   }) : super(key: key);
 
@@ -67,6 +67,7 @@ class WebViewScaffoldState extends State<WebViewScaffold>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+
     if (widget.refreshOnResume && state == AppLifecycleState.resumed) {
       webviewPlugin.refresh();
     }
