@@ -80,6 +80,12 @@ class WebviewPluginModifyPlugin(
             webView = WebView(activity)
             webView!!.webChromeClient = chromeFileHandler
             webView!!.webViewClient = webHandler
+            webView!!.setWebChromeClient(object : WebChromeClient(){
+                override fun onGeolocationPermissionsShowPrompt(origin: String, callback: GeolocationPermissions.Callback){
+                    callback.invoke(origin, true, false)
+                }
+            })
+
             webView!!.setOnKeyListener { _, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN) {
                     when (keyCode) {
